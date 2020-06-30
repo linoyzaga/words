@@ -1,16 +1,25 @@
+const fs = require("fs");
 const path = require("path");
-const lineByLine = require("n-readlines");
 const stringReader = require("./stringReader");
 
-async function fileReader(filePath) {
+function fileReader(filePath) {
   const dataPath = path.resolve(__dirname, filePath);
 
-  const liner = new lineByLine(dataPath);
-  let line;
+  const readStream = fs.createReadStream(dataPath, {
+    highWaterMark: 1 * 1024,
+    encoding: "utf8",
+  });
 
-  while ((line = liner.next())) {
-    stringReader(line.toString());
-  }
+  readStream
+    .on("data", function (chunk) {
+      stringReader(chunk);
+    })
+    .on("error", function (err) {
+      console.log(`Error Reading File ${filePath}: ${err}`);
+    })
+    .on("end", function () {
+      console.log(`Done Reading File: ${filePath}`);
+    });
 }
 
 module.exports = fileReader;

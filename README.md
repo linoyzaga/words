@@ -2,7 +2,7 @@
 
 ## Technologies
 
-I chose to use Node.js and Express.js for the server, the reason is that this is my safe plae and the most recent languages I use.
+I chose to use Node.js and Express.js for the server, the reason is that this is my safe place and the most recent languages I use.
 
 ## Getting Started
 
@@ -32,7 +32,7 @@ That's it, you are all set!
 
    Options for data could be:
 
-   - String
+   - String - Limit up to 500 chars.
    - File path
    - URL
 
@@ -60,9 +60,6 @@ src/
   data
     file.csv              // an example file
     staticticsCache.js    // simulate DB cache
-  exceptions
-    AppError.js           // Error class for the app
-    index.js              // init all error classes
   helpers
     responses.js          // api reponses wrapper
   loaders
@@ -72,6 +69,12 @@ src/
     errors.js             // error middleware fot the api
     validations.js        // validation middleware for the api
   services
+    readers
+      fileReader.js       // file type async reader
+      index.js            // start point for all reader
+      ReaderManager.js    // ReaderManager class for init the current reader function
+      stringReader.js     // string type reader
+      urlReader.js        // url type async reader
     words.services.js     // BI logic
   validations
     words.js              // joi schema for words modal
