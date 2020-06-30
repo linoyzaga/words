@@ -6,7 +6,7 @@ function fileReader(filePath) {
   const dataPath = path.resolve(__dirname, filePath);
 
   const readStream = fs.createReadStream(dataPath, {
-    highWaterMark: 1 * 1024,
+    highWaterMark: 1024,
     encoding: "utf8",
   });
 
