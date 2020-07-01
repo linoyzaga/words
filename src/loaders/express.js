@@ -12,7 +12,6 @@ const initExpress = async ({
   }));
 
   app.use("/", router);
-
   app.use(errorMiddleware.errorHandler);
 
   return app;

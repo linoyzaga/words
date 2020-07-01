@@ -34,10 +34,20 @@ That's it, you are all set!
 
    - String - Limit up to 500 chars.
    - File path
-   - URL
+   - URL - Assume getting an html.
 
-   Request example:
+   Examples:
+   String:
+
    `{ "data": "Hi! My name is (what?), my name is (who?), my name is Slim Shady" }`
+
+   File path:
+
+   `{ "data": "../../data/file.csv" }`
+
+   URL:
+
+   `{ "data": "http://www.google.com" }`
 
 2. Statistics endpoint
 
@@ -52,7 +62,7 @@ Breaking down the basic structure and the configurations
 ```
 src/
   api
-    index.js              // words router
+    index.js              // application router
   config
     index.js              // config initalaztions
   controllers
@@ -60,6 +70,9 @@ src/
   data
     file.csv              // an example file
     staticticsCache.js    // simulate DB cache
+  exceptions
+    AppError.js           // application error class
+    index.js              // start point for all error classes
   helpers
     responses.js          // api reponses wrapper
   loaders

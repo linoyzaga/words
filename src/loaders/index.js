@@ -6,7 +6,7 @@ const init = async ({
   await expressLoader.initExpress({
     app: expressApp,
   });
-  console.log("Express init");
+  console.log("Express initialized");
 };
 
 module.exports = {

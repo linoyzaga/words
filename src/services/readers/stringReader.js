@@ -1,7 +1,7 @@
 const WordsMap = require('../../data/staticticsCache');
 
 const convertString = (string) => {
-  return string.replace(/[^a-zA-Z ]/g, ""); // Remove all special chars and numbers
+  return string.replace(/[^a-zA-Z ]/g, " "); // Remove all special chars and numbers
 }
 
 function stringReader(string) {

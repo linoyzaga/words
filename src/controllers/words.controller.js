@@ -7,12 +7,12 @@ const couter = async (req, res) => {
 
   const readerManager = new ReaderManager(data);
 
-  if (readerManager.reader) {
-    readerManager.reader(data);
-    return Responses.successResponse({}, res);
+  try {
+    readerManager.read();
+    return Responses.successResponse('OK', res);
+  } catch (error) {
+    throw new AppError("Internal Server Error", 500);
   }
-
-  return Responses.errorResponse("String cannot be read.", res);
 };
 
 const statistics = async (req, res) => {
@@ -25,8 +25,8 @@ const statistics = async (req, res) => {
       },
       res
     );
-  } catch (e) {
-    return Responses.errorResponse("Server Error.", res);
+  } catch (error) {
+    throw new AppError("Internal Server error", 500);
   }
 };
 

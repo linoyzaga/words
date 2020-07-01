@@ -5,12 +5,6 @@ const successResponse = (data, res) => {
   return res.status(OK).json(data);
 };
 
-const errorResponse = (message, res) => {
-  return res.status(BAD_REQUEST).json({
-    message
-  });
-};
-
 const validationErrorResponse = (res, e) => {
   return res.status(BAD_REQUEST).json({
     message: `Validation error: ${e}`
@@ -19,6 +13,5 @@ const validationErrorResponse = (res, e) => {
 
 module.exports = {
   successResponse,
-  errorResponse,
   validationErrorResponse,
 }

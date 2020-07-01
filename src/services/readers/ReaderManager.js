@@ -1,29 +1,40 @@
 const WordsService = require("../words.services");
+const AppError = require('../../exceptions');
 
 const isText = /\s/;
 const isURL = /^(http:\/\/|https:\/\/|www.)/;
 const isFilePath = /^(.+)\/([^/]+)$/;
 
 class ReaderManager {
-  constructor(data) {
-    this.reader = undefined;
+  _reader = undefined;
 
-    this.initReader(data)
+  constructor(data) {
+    this._data = data;
+    this.initReader(data);
   }
 
-  initReader(data) {
-    if (isText.test(data)) {
-      this.reader = WordsService.stringCounter;
+  read() {
+    if (this._reader) {
+      this._reader(this._data);
       return;
     }
 
-    if (isURL.test(data)) {
-      this.reader = WordsService.urlCounter;
+    throw new AppError('Reader is not initialized.', 400);
+  }
+
+  initReader() {
+    if (isText.test(this._data)) {
+      this._reader = WordsService.stringCounter;
       return;
     }
 
-    if (isFilePath.test(data)) {
-      this.reader = WordsService.fileCounter;
+    if (isURL.test(this._data)) {
+      this._reader = WordsService.urlCounter;
+      return;
+    }
+
+    if (isFilePath.test(this._data)) {
+      this._reader = WordsService.fileCounter;
       return;
     }
   };
