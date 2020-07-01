@@ -36,6 +36,9 @@ That's it, you are all set!
    - File path
    - URL - Assume getting an html.
 
+   **Notice:**
+   In all Strings (including file and url strings) dashes, commas, digits and other punctuation are being cleaned up and we reffer it as space. So if you have `<html>html` string we will reder it as twice the word `html`.
+
    Examples:
    String:
 
