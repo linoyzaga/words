@@ -1,9 +1,20 @@
-const errorHandler = (err, req, res, next) => {
-  err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
+const {
+  BadRequest
+} = require("../exceptions");
 
-  res.status(err.statusCode).json({
-    message: err.message
+const errorHandler = (err, req, res, next) => {
+  console.error(err, err.stack);
+
+  let message = "Internal Server Error";
+  let statusCode = 500;
+
+  if (err instanceof BadRequest) {
+    message = err.message;
+    statusCode = 400;
+  }
+
+  res.status(statusCode).json({
+    message: message
   });
 }
 

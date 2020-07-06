@@ -71,14 +71,19 @@ src/
   controllers
     words.controller.js   // words controller
   data
-    file.csv              // an example file
-    staticticsCache.js    // simulate DB cache
+    managers
+      fileManager         // file manager to connect the persisted DB file
+    data.json             // simulate persisted DB file
+    staticticsCache.js    // simulate DB cache manager
   exceptions
-    AppError.js           // application error class
+    BadRequest.js         // bar request error class
     index.js              // start point for all error classes
   helpers
     responses.js          // api reponses wrapper
+  inputFiles
+    file.csv              // an example file
   loaders
+    data.js               // cache db initalaztions
     express.js            // express initalaztions
     index.js              // init all loaders to app
   middlewares

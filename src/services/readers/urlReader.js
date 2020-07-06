@@ -1,16 +1,15 @@
 const LineReader = require("linereader");
 const stringReader = require("./stringReader");
 const {
-  AppError
-} = require("../../exceptions");
+  saveWordsMap
+} = require('../../data/staticticsCache');
 
 function urlReader(urlPath) {
   const lr = new LineReader(urlPath);
 
   lr.on("error", function (err) {
-    console.log(`Error encounter in URL reader for url ${urlPath}: ${err}`);
+    console.error(`Error encounter in URL reader for url ${urlPath}: ${err}`);
     lr.close();
-    throw new AppError('Server Error', 500)
   });
 
   lr.on("line", function (lineno, line) {
@@ -18,6 +17,7 @@ function urlReader(urlPath) {
   });
 
   lr.on("end", function () {
+    saveWordsMap();
     console.log(`Done Reading URL: ${urlPath}`);
   });
 }

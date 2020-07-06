@@ -1,11 +1,11 @@
 const Joi = require("joi");
 const {
-  validationErrorResponse
-} = require('../helpers/responses');
-const {
   counterSchema,
   statisticsSchema,
 } = require('../validations/words');
+const {
+  BadRequest
+} = require("../exceptions");
 
 const validateCounterSchema = (req, res, next) => {
   const params = {
@@ -14,7 +14,11 @@ const validateCounterSchema = (req, res, next) => {
 
   const response = Joi.validate(params, counterSchema);
 
-  return response.error ? validationErrorResponse(res, response.error.message) : next();
+  if (response.error) {
+    throw new BadRequest(response.error.message)
+  }
+
+  next();
 };
 
 const validateStatisticsSchema = (req, res, next) => {
@@ -24,7 +28,11 @@ const validateStatisticsSchema = (req, res, next) => {
 
   const response = Joi.validate(params, statisticsSchema);
 
-  return response.error ? validationErrorResponse(res, response.error.message) : next();
+  if (response.error) {
+    throw new BadRequest(response.error.message)
+  }
+
+  next();
 };
 
 module.exports = {

@@ -1,5 +1,5 @@
-const AppError = require('../exceptions/AppError');
+const BadRequest = require('./BadRequest');
 
 module.exports = {
-  AppError,
+  BadRequest,
 }

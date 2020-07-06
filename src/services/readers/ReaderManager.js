@@ -1,5 +1,4 @@
 const WordsService = require("../words.services");
-const AppError = require('../../exceptions');
 
 const isText = /\s/;
 const isURL = /^(http:\/\/|https:\/\/|www.)/;
@@ -14,12 +13,7 @@ class ReaderManager {
   }
 
   read() {
-    if (this._reader) {
-      this._reader(this._data);
-      return;
-    }
-
-    throw new AppError('Reader is not initialized.', 400);
+    this._reader(this._data);
   }
 
   initReader() {

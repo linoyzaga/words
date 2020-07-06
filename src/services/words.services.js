@@ -1,4 +1,4 @@
-const WordsMap = require("../data/staticticsCache");
+const StaticticsCache = require("../data/staticticsCache");
 const {
   stringReader,
   fileReader,
@@ -7,6 +7,7 @@ const {
 
 function stringCounter(string) {
   stringReader(string);
+  StaticticsCache.saveWordsMap();
 }
 
 function fileCounter(filePath) {
@@ -18,7 +19,7 @@ function urlCounter(urlPath) {
 }
 
 function statisticsCheck(word) {
-  return WordsMap[word] ? WordsMap[word] : 0;
+  return StaticticsCache.get(word) ? StaticticsCache.get(word) : 0;
 }
 
 module.exports = {
